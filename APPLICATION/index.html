@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather ForeCast Application</title>
+    <link rel="icon" href="./Icon.png">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+        integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+</head>
+
+<body onload="startTime(), GetWeather(DefaultPlace)">
+    <main>
+        <header>
+            <p id="app_nm">Weather<span>Forecast</span></p>
+            <img src="./Icon.png" alt="App-Icon" class="app_icon">
+            <p id="app_nm">Application</p>
+        </header>
+        <form onsubmit="event.preventDefault();">
+            <div class="search_field" align="center">
+                <input type="text" id="search_city" placeholder="Enter City Name">
+                <p id="errormsg"></p>
+            </div>
+            <button id="searchbutton">Search</button>
+        </form>
+
+        <div class="weather_container">
+
+            <div class="currentweather_container">
+
+                <div class="currentweather">
+                    <div class="datetime_container">
+                        <p id="date">Date</p>
+                        <p id="time">Time</p>
+                    </div>
+
+                    <h3 id="place_name">Place Name</h3>
+                    <div class="weather_details">
+
+                        <div class="weather_item" id="weatherconditionbox">
+                            <h5>Condition <i class="fa-solid fa-cloud"></i></h5>
+                            <p id="condition"> </p>
+                            <div id="conditionicon"></div>
+                        </div>
+
+                        <div class="weather_item">
+                            <h5>Temperature <i class="fa-solid fa-temperature-full"></i></h5>
+                            <p> <span id="temperature"></span>&deg;C</p>
+                        </div>
+
+                        <div class="weather_item">
+                            <h5>Humidity <i class="fa-solid fa-fire-flame-simple"></i></h5>
+                            <p><span id="humidity"></span>&percnt;</p>
+                        </div>
+
+                        <div class="weather_item">
+                            <h5>Wind Speed <i class="fa-solid fa-wind"></i></h5>
+                            <p><span id="windspeed"></span> Km/h</p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="weatherforecast_container">
+                <div class="weatherforecast">
+
+                    <div class="forecastitem">
+                        <h5 id="day1"></h5>
+                        <div class="forecastitem-details">
+
+                            <div id="day1conditionbox" class="conditionbox"> </div>
+
+                            <p>Temperature<span id="day1temperature"></span></p>
+                            <p>Humidity<span id="day1humidity"></span></p>
+                            <p>Wind Speed<span id="day1wind"></span></p>
+                        </div>
+                    </div>
+
+                    <div class="forecastitem">
+                        <h5 id="day2"></h5>
+                        <div class="forecastitem-details">
+                            <div id="day2conditionbox" class="conditionbox"> </div>
+                            <p>Temperature<span id="day2temperature"></span></p>
+                            <p>Humidity<span id="day2humidity"></span></p>
+                            <p>Wind Speed<span id="day2wind"></span></p>
+                        </div>
+                    </div>
+
+                    <div class="forecastitem">
+                        <h5 id="day3"></h5>
+                        <div class="forecastitem-details">
+                            <div id="day3conditionbox" class="conditionbox"> </div>
+                            <p>Temperature<span id="day3temperature"></span></p>
+                            <p>Humidity<span id="day3humidity"></span></p>
+                            <p>Wind Speed<span id="day3wind"></span></p>
+                        </div>
+                    </div>
+                    <div class="forecastitem">
+                        <h5 id="day4"></h5>
+                        <div class="forecastitem-details">
+                            <div id="day4conditionbox" class="conditionbox"> </div>
+                            <p>Temperature<span id="day4temperature"></span></p>
+                            <p>Humidity<span id="day4humidity"></span></p>
+                            <p>Wind Speed<span id="day4wind"></span></p>
+                        </div>
+                    </div>
+                    <div class="forecastitem">
+                        <h5 id="day5"></h5>
+                        <div class="forecastitem-details">
+                            <div id="day5conditionbox" class="conditionbox"> </div>
+                            <p>Temperature<span id="day5temperature"></span></p>
+                            <p>Humidity<span id="day5humidity"></span></p>
+                            <p>Wind Speed<span id="day5wind"></span></p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <footer>
+            <div class="app-logo">
+                <p id="app_nm">Weather<span>Forecast</span></p>
+                <img src="./Icon.png" alt="App-icon" class="app_icon">
+                <p id="app_nm">Application</p>
+            </div>
+            <div class="designerdnfo">
+                <p>Designed and Developed By <span id="name">Sneha Kumari</span></p>
+            </div>
+            <!-- <div class="socialmedia"> -->
+            <!-- <a href="https://github.com/AaratiDhuriyabans" target="_blank" title="Github"><i
+                        class="fa-brands fa-github"></i>
+                    <a href="https://www.linkedin.com/in/aarati-dhuriyabans-053351129/" target="_blank"
+                        title="Linkdin"><i class="fa-brands fa-linkedin-in"></i> -->
+            </div>
+        </footer>
+    </main>
+    <script src="./main.js"></script>
+
+
+
+</body>
+
+</html>
